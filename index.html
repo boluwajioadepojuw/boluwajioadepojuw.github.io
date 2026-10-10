@@ -67,15 +67,61 @@ ci ................... <span class="t-green">green x6</span>
   <p class="section-sub">Six repositories, one SOC. Each tool feeds the next: rules define what to look for,
   telemetry arrives from Windows and Linux, detections fire, and everything converges in the triage console.</p>
   <div class="diagram-wrap">
-    <pre class="mermaid">
-flowchart LR
-  A[SigScope<br/>coverage gate] -->|portable detections| B[SOCAtelier<br/>SOC lab + Lynx console]
-  C[SplunkHarbor<br/>Splunk ingestion] -->|Windows telemetry| B
-  B --> D[14 investigation reports]
-  E[IocVerdict<br/>IOC enrichment] -->|verdict per indicator| D
-  F[DomainSieve<br/>NRD to Suricata] -->|gateway blocks| B
-  G[ArpSieve<br/>ARP poisoning] -->|network layer| B
-    </pre>
+    <svg viewBox="0 0 940 470" role="img" aria-label="Diagram of the six repositories feeding the SOCAtelier lab and the investigation reports" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a6b8a"/>
+        </marker>
+      </defs>
+
+      <!-- edges -->
+      <path d="M 220 84 H 300 V 195 H 340" fill="none" stroke="#3b5876" stroke-width="1.6" marker-end="url(#arr)"/>
+      <path d="M 220 194 H 300 V 215 H 340" fill="none" stroke="#3b5876" stroke-width="1.6" marker-end="url(#arr)"/>
+      <path d="M 220 304 H 310 V 235 H 340" fill="none" stroke="#3b5876" stroke-width="1.6" marker-end="url(#arr)"/>
+      <path d="M 220 414 H 320 V 255 H 340" fill="none" stroke="#3b5876" stroke-width="1.6" marker-end="url(#arr)"/>
+      <path d="M 570 215 H 680" fill="none" stroke="#3b5876" stroke-width="1.6" marker-end="url(#arr)"/>
+      <path d="M 795 113 V 175" fill="none" stroke="#3b5876" stroke-width="1.6" marker-end="url(#arr)"/>
+
+      <!-- edge labels -->
+      <text x="260" y="76" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">portable detections</text>
+      <text x="260" y="186" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">Windows telemetry</text>
+      <text x="290" y="296" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">network layer</text>
+      <text x="270" y="406" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">gateway blocks</text>
+      <text x="625" y="205" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">write-ups</text>
+      <text x="812" y="146" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">verdict per indicator</text>
+
+      <!-- left column -->
+      <rect x="30" y="55" width="190" height="58" rx="8" fill="#0d1b2a" stroke="#2a4a5e" stroke-width="1.4"/>
+      <text x="125" y="79" text-anchor="middle" font-size="15" font-weight="700" fill="#d7e0ea" font-family="ui-monospace, Menlo, monospace">SigScope</text>
+      <text x="125" y="98" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">Sigma coverage gate</text>
+
+      <rect x="30" y="165" width="190" height="58" rx="8" fill="#0d1b2a" stroke="#2a4a5e" stroke-width="1.4"/>
+      <text x="125" y="189" text-anchor="middle" font-size="15" font-weight="700" fill="#d7e0ea" font-family="ui-monospace, Menlo, monospace">SplunkHarbor</text>
+      <text x="125" y="208" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">Splunk ingestion</text>
+
+      <rect x="30" y="275" width="190" height="58" rx="8" fill="#0d1b2a" stroke="#2a4a5e" stroke-width="1.4"/>
+      <text x="125" y="299" text-anchor="middle" font-size="15" font-weight="700" fill="#d7e0ea" font-family="ui-monospace, Menlo, monospace">ArpSieve</text>
+      <text x="125" y="318" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">ARP poisoning detection</text>
+
+      <rect x="30" y="385" width="190" height="58" rx="8" fill="#0d1b2a" stroke="#2a4a5e" stroke-width="1.4"/>
+      <text x="125" y="409" text-anchor="middle" font-size="15" font-weight="700" fill="#d7e0ea" font-family="ui-monospace, Menlo, monospace">DomainSieve</text>
+      <text x="125" y="428" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">NRD feed to Suricata</text>
+
+      <!-- center: SOCAtelier -->
+      <rect x="340" y="175" width="230" height="80" rx="10" fill="#0e2233" stroke="#4dd0e1" stroke-width="1.8"/>
+      <text x="455" y="206" text-anchor="middle" font-size="18" font-weight="700" fill="#4dd0e1" font-family="ui-monospace, Menlo, monospace">SOCAtelier</text>
+      <text x="455" y="229" text-anchor="middle" font-size="12" fill="#d7e0ea" font-family="ui-monospace, Menlo, monospace">SOC lab + Lynx console</text>
+
+      <!-- right: reports -->
+      <rect x="680" y="175" width="230" height="80" rx="10" fill="#0d1b2a" stroke="#3fca6b" stroke-width="1.6"/>
+      <text x="795" y="206" text-anchor="middle" font-size="16" font-weight="700" fill="#3fca6b" font-family="ui-monospace, Menlo, monospace">14 reports</text>
+      <text x="795" y="229" text-anchor="middle" font-size="12" fill="#d7e0ea" font-family="ui-monospace, Menlo, monospace">investigations, written up</text>
+
+      <!-- IocVerdict -->
+      <rect x="680" y="55" width="230" height="58" rx="8" fill="#0d1b2a" stroke="#2a4a5e" stroke-width="1.4"/>
+      <text x="795" y="79" text-anchor="middle" font-size="15" font-weight="700" fill="#d7e0ea" font-family="ui-monospace, Menlo, monospace">IocVerdict</text>
+      <text x="795" y="98" text-anchor="middle" font-size="11" fill="#8b98a9" font-family="ui-monospace, Menlo, monospace">IOC enrichment, 0-100 verdicts</text>
+    </svg>
   </div>
   <div class="loop-strip">
     <div class="loop-step"><span class="loop-n">01</span>detect<div class="loop-desc">Sigma rules and 96 Elastic queries mapped to MITRE ATT&CK</div></div>
@@ -96,7 +142,7 @@ flowchart LR
       <div class="card-body">
         <div class="card-head">
           <h3>SOCAtelier</h3>
-          <img class="badge" src="https://github.com/boluwajioadepojuw/SOCAtelier/actions/workflows/ci.yml/badge.svg" alt="CI">
+          <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/SOCAtelier/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
         <p class="card-desc">The core lab. Elastic, osTicket and a self-built triage console (FastAPI + React + D3) in Docker; Suricata on the gateway. Atomic Red Team runs validated the rules; four Linux cases were captured live from the lab host itself.</p>
         <div class="tags"><span>Elastic</span><span>Suricata</span><span>FastAPI</span><span>React</span><span>Sysmon</span><span>Docker</span></div>
@@ -110,7 +156,7 @@ flowchart LR
       <div class="card-body">
         <div class="card-head">
           <h3>SplunkHarbor</h3>
-          <img class="badge" src="https://github.com/boluwajioadepojuw/SplunkHarbor/actions/workflows/ci.yml/badge.svg" alt="CI">
+          <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/SplunkHarbor/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
         <p class="card-desc">Splunk in Docker with a PowerShell script that installs the Universal Forwarder on a Windows endpoint. Five SPL detections — brute force, encoded PowerShell, scheduled tasks, lateral movement, persistence — plus an alert-to-write-up walkthrough.</p>
         <div class="tags"><span>Splunk</span><span>SPL</span><span>Sysmon</span><span>PowerShell</span><span>Docker</span></div>
@@ -124,7 +170,7 @@ flowchart LR
       <div class="card-body">
         <div class="card-head">
           <h3>SigScope</h3>
-          <img class="badge" src="https://github.com/boluwajioadepojuw/SigScope/actions/workflows/ci.yml/badge.svg" alt="CI">
+          <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/SigScope/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
         <p class="card-desc">Detection as code. A Python CLI that maps Sigma rules onto MITRE ATT&CK and renders HTML, CSV, a coverage badge and a gap workbook — every uncovered technique listed with its tactic and a next action. CI fails the build when coverage drops.</p>
         <div class="tags"><span>Python</span><span>Sigma</span><span>ATT&CK</span><span>CI gate</span></div>
@@ -138,7 +184,7 @@ flowchart LR
       <div class="card-body">
         <div class="card-head">
           <h3>IocVerdict</h3>
-          <img class="badge" src="https://github.com/boluwajioadepojuw/IocVerdict/actions/workflows/ci.yml/badge.svg" alt="CI">
+          <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/IocVerdict/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
         <p class="card-desc">Threat-intel console: feed it an IP, domain, URL or hash and it asks six free sources, scores the indicator 0-100 and maps it to MITRE. The verdict lands in the investigation reports.</p>
         <div class="tags"><span>Python</span><span>Threat intel</span><span>IOC</span></div>
@@ -152,7 +198,7 @@ flowchart LR
       <div class="card-body">
         <div class="card-head">
           <h3>DomainSieve</h3>
-          <img class="badge" src="https://github.com/boluwajioadepojuw/DomainSieve/actions/workflows/ci.yml/badge.svg" alt="CI">
+          <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/DomainSieve/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
         <p class="card-desc">Phishing-domain sieve. Downloads the Newly Registered Domains feed, scores for brand impersonation and turns suspicious domains into Suricata rules that block them at the gateway.</p>
         <div class="tags"><span>Python</span><span>Suricata</span><span>NRD feed</span></div>
@@ -166,7 +212,7 @@ flowchart LR
       <div class="card-body">
         <div class="card-head">
           <h3>ArpSieve</h3>
-          <img class="badge" src="https://github.com/boluwajioadepojuw/ArpSieve/actions/workflows/ci.yml/badge.svg" alt="CI">
+          <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/ArpSieve/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
         <p class="card-desc">Network layer of the lab. Watches ARP traffic live and in pcaps, detects poisoning, and alerts — with sample captures committed as test fixtures.</p>
         <div class="tags"><span>Python</span><span>ARP</span><span>pcap</span></div>
@@ -250,31 +296,47 @@ flowchart LR
 </footer>
 
 <div id="lightbox" class="lightbox" hidden>
-  <button class="lb-close" aria-label="Close">×</button>
+  <button class="lb-close" aria-label="Close">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
   <img class="lb-img" src="" alt="">
   <p class="lb-cap"></p>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script>
-mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: {
-  background: '#0a1017', primaryColor: '#0d1b2a', primaryTextColor: '#d7e0ea',
-  primaryBorderColor: '#1e3a52', lineColor: '#3b5876', fontFamily: 'ui-monospace, Menlo, monospace',
-  fontSize: '13px' } });
+document.addEventListener('DOMContentLoaded', function () {
+  var shots = document.querySelectorAll('.shot');
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb.querySelector('.lb-img');
+  var lbCap = lb.querySelector('.lb-cap');
 
-const shots = document.querySelectorAll('.shot');
-const lb = document.getElementById('lightbox');
-const lbImg = lb.querySelector('.lb-img');
-const lbCap = lb.querySelector('.lb-cap');
-shots.forEach(s => s.addEventListener('click', () => {
-  const img = s.querySelector('img');
-  lbImg.src = img.src.replace('assets/img/', 'assets/img/');
-  lbImg.alt = img.alt;
-  lbCap.textContent = s.dataset.cap;
-  lb.hidden = false;
-}));
-lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-close')) lb.hidden = true; });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.hidden = true; });
+  function openShot(img, cap) {
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = cap;
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lb.hidden = true;
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  shots.forEach(function (s) {
+    s.addEventListener('click', function () {
+      var img = s.querySelector('img');
+      openShot(img, s.getAttribute('data-cap'));
+    });
+  });
+
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb || e.target.closest('.lb-close')) closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !lb.hidden) closeLightbox();
+  });
+});
 </script>
 
 </body>

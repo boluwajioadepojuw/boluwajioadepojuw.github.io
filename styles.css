@@ -122,7 +122,7 @@ a:hover { text-decoration: underline; }
   background: var(--panel); border: 1px solid var(--border-soft); border-radius: 10px;
   padding: 24px; overflow-x: auto;
 }
-.mermaid { display: flex; justify-content: center; min-width: 720px; }
+.diagram-wrap svg { width: 100%; height: auto; min-width: 640px; display: block; }
 
 /* loop strip */
 .loop-strip {
@@ -146,11 +146,21 @@ a:hover { text-decoration: underline; }
 .card:hover { border-color: var(--border); transform: translateY(-2px); }
 .card-featured { border-color: #2a4a5e; }
 .card-img { display: block; border-bottom: 1px solid var(--border-soft); background: #060a10; }
-.card-img img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; }
+.card-img img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; object-position: top; height: auto; }
+@supports not (aspect-ratio: 1) {
+  .card-img img { height: 190px; }
+}
 .card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .card-head h3 { font-family: var(--mono); font-size: 19px; }
+.badge-wrap { display: inline-flex; align-items: center; }
 .badge { height: 20px; display: block; }
+.badge-wrap.no-badge img { display: none; }
+.badge-wrap.no-badge::after {
+  content: "CI green";
+  font-family: var(--mono); font-size: 11px; color: var(--green);
+  border: 1px solid var(--green); border-radius: 4px; padding: 2px 8px; background: rgba(63, 202, 107, 0.08);
+}
 .card-desc { color: var(--muted); font-size: 14.5px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tags span {
@@ -196,23 +206,29 @@ a:hover { text-decoration: underline; }
   overflow: hidden; cursor: zoom-in; transition: border-color .15s, transform .15s;
 }
 .shot:hover { border-color: var(--cyan); transform: translateY(-2px); }
-.shot img { width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover; object-position: top; }
+.shot img { width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover; object-position: top; height: auto; }
+@supports not (aspect-ratio: 1) {
+  .shot img { height: 150px; }
+}
 .shot figcaption { padding: 8px 12px; font-family: var(--mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--border-soft); }
 
 /* lightbox */
 .lightbox {
-  position: fixed; inset: 0; z-index: 100;
-  background: rgba(3, 5, 9, 0.92);
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 100;
+  background: rgba(3, 5, 9, 0.94);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: 32px;
 }
-.lb-img { max-width: min(1100px, 94vw); max-height: 82vh; border: 1px solid var(--border); border-radius: 6px; background: #060a10; }
+.lightbox[hidden] { display: none; }
+.lb-img { max-width: min(1100px, 94vw); max-height: 80vh; border: 1px solid var(--border); border-radius: 6px; background: #060a10; }
 .lb-cap { color: var(--muted); font-family: var(--mono); font-size: 13px; margin-top: 14px; text-align: center; }
 .lb-close {
-  position: absolute; top: 20px; right: 28px;
-  background: none; border: none; color: var(--text); font-size: 34px; cursor: pointer; line-height: 1;
+  position: absolute; top: 18px; right: 24px;
+  background: none; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--text); padding: 6px; cursor: pointer; line-height: 0;
+  display: flex; align-items: center; justify-content: center;
 }
-.lb-close:hover { color: var(--cyan); }
+.lb-close:hover { color: var(--cyan); border-color: var(--cyan); }
 
 /* contact */
 .contact-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 860px; }
@@ -246,5 +262,7 @@ a:hover { text-decoration: underline; }
 @media (max-width: 560px) {
   .gallery { grid-template-columns: 1fr; }
   .stats-strip { grid-template-columns: repeat(2, 1fr); }
-  .nav-links { display: none; }
+  .nav-links { display: flex; flex-wrap: wrap; gap: 10px 14px; }
+  .nav-links a { font-size: 12px; }
+  .nav-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
