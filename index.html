@@ -13,7 +13,7 @@
   <div class="statusbar-inner">
     <span class="sb-item"><span class="sb-dot sb-green"></span>lab online</span>
     <span class="sb-item"><span class="sb-dot sb-green"></span>elastic · splunk · suricata up</span>
-    <span class="sb-item">96 detection rules</span>
+    <span class="sb-item">97 detection rules</span>
     <span class="sb-item">14 investigation reports</span>
     <span class="sb-item sb-right"><span class="sb-dot sb-green"></span>CI green x6</span>
   </div>
@@ -49,8 +49,8 @@
       </div>
       <div class="hero-facts">
         <div class="fact"><span class="fact-num">6</span><span class="fact-label">repositories, one pipeline</span></div>
-        <div class="fact"><span class="fact-num">96</span><span class="fact-label">detection rules</span></div>
-        <div class="fact"><span class="fact-num">18</span><span class="fact-label">Sigma rules</span></div>
+        <div class="fact"><span class="fact-num">97</span><span class="fact-label">detection rules</span></div>
+        <div class="fact"><span class="fact-num">29</span><span class="fact-label">Sigma rules</span></div>
         <div class="fact"><span class="fact-num">14</span><span class="fact-label">investigations</span></div>
       </div>
     </div>
@@ -112,7 +112,7 @@
     </svg>
   </div>
   <div class="loop-strip">
-    <div class="loop-step"><span class="loop-n">01</span>detect<div class="loop-desc">Sigma rules and 96 Elastic queries mapped to MITRE ATT&CK</div></div>
+    <div class="loop-step"><span class="loop-n">01</span>detect<div class="loop-desc">Sigma rules and 97 Elastic queries mapped to MITRE ATT&CK</div></div>
     <div class="loop-step"><span class="loop-n">02</span>ingest<div class="loop-desc">Sysmon, Security logs, Suricata and Splunk forwarders</div></div>
     <div class="loop-step"><span class="loop-n">03</span>triage<div class="loop-desc">Lynx console: process trees, cross-layer correlation, hunts</div></div>
     <div class="loop-step"><span class="loop-n">04</span>report<div class="loop-desc">Fourteen written investigations, alert to write-up</div></div>
@@ -140,9 +140,9 @@
           <h3>SOCAtelier</h3>
           <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/SOCAtelier/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
-        <p class="card-desc">The core lab. Elastic and osTicket in Docker, Suricata on the gateway, and Lynx — a triage console I built (FastAPI + React + D3) with case queue, process trees, cross-layer correlation and a hunt workbench. Four Linux cases were captured live from the lab host itself. The Atomic Red Team stress run is benchmarked against the rules in CI: 11 of 12 executed techniques covered.</p>
+        <p class="card-desc">The core lab. Elastic and osTicket in Docker, Suricata on the gateway, and Lynx — a triage console I built (FastAPI + React + D3) with case queue, process trees, cross-layer correlation and a hunt workbench. Four Linux cases were captured live from the lab host itself. The Atomic Red Team stress run is benchmarked against the rules in CI: 12 of 12 executed techniques covered.</p>
         <div class="tags"><span>Elastic</span><span>Suricata</span><span>FastAPI</span><span>React</span><span>Sysmon</span><span>Docker</span></div>
-        <div class="card-meta">96 detection rules · 18 Sigma rules · 90 behavioral profiles · 14 investigations · ART benchmark: 91.7% coverage, CI-gated</div>
+        <div class="card-meta">97 detection rules · 29 Sigma rules · 90 behavioral profiles · 14 investigations · ART benchmark: 100% coverage, CI-gated</div>
         <div class="card-links">
           <a class="card-link" href="https://github.com/boluwajioadepojuw/SOCAtelier" target="_blank" rel="noopener">repository →</a>
           <a class="card-link" href="https://github.com/boluwajioadepojuw/SOCAtelier/blob/main/.benchmarks/benchmark-report.md" target="_blank" rel="noopener">benchmark report →</a>
@@ -229,7 +229,7 @@
   <p class="section-sub">Not screenshots of screenshots. These terminal captures and browser shots came out of
   actual runs of the tools, with real feeds and real data.</p>
   <div class="proof-grid">
-    <figure class="shot" data-cap="SigScope CLI — 23/54 ATT&CK techniques covered, gate passes"><img src="assets/img/sig-cli.png" alt="SigScope CLI run" loading="lazy"><figcaption>SigScope — coverage gate run</figcaption></figure>
+    <figure class="shot" data-cap="SigScope CLI — 39/54 ATT&CK techniques covered, gate passes"><img src="assets/img/sig-cli.png" alt="SigScope CLI run" loading="lazy"><figcaption>SigScope — coverage gate run</figcaption></figure>
     <figure class="shot" data-cap="IocVerdict — live Emotet/QakBot C2 IP scored 25/100, URLhaus URL scored 20/100"><img src="assets/img/ioc-live.png" alt="IocVerdict live run" loading="lazy"><figcaption>IocVerdict — real C2 verdicts</figcaption></figure>
     <figure class="shot" data-cap="ArpSieve — benign capture clean, poisoned capture raises the spoofing alert"><img src="assets/img/arp-alert.png" alt="ArpSieve alert" loading="lazy"><figcaption>ArpSieve — pcap analysis</figcaption></figure>
     <figure class="shot" data-cap="DomainSieve — today's NRD feed: 8 suspicious domains, 24 Suricata rules"><img src="assets/img/ds-rulebuild.png" alt="DomainSieve rule build" loading="lazy"><figcaption>DomainSieve — feed to rules</figcaption></figure>
@@ -282,7 +282,7 @@
     <figure class="shot" data-cap="SOCAtelier — hunt workbench"><img src="assets/img/soc-console-hunt.png" alt="Hunt workbench" loading="lazy"><figcaption>Hunt workbench</figcaption></figure>
     <figure class="shot" data-cap="SOCAtelier — analyst action log"><img src="assets/img/soc-console-actions.png" alt="Action log" loading="lazy"><figcaption>Action log</figcaption></figure>
     <figure class="shot" data-cap="SOCAtelier — ATT&CK coverage map"><img src="assets/img/soc-console-coverage.png" alt="Coverage map" loading="lazy"><figcaption>Coverage map</figcaption></figure>
-    <figure class="shot" data-cap="SigScope — CLI run: 23/54 techniques covered"><img src="assets/img/sig-cli.png" alt="SigScope CLI" loading="lazy"><figcaption>SigScope CLI run</figcaption></figure>
+    <figure class="shot" data-cap="SigScope — CLI run: 39/54 techniques covered"><img src="assets/img/sig-cli.png" alt="SigScope CLI" loading="lazy"><figcaption>SigScope CLI run</figcaption></figure>
     <figure class="shot" data-cap="SigScope — HTML coverage report"><img src="assets/img/sig-report.png" alt="Coverage report" loading="lazy"><figcaption>Coverage report</figcaption></figure>
     <figure class="shot" data-cap="IocVerdict — live C2 IP and URLhaus URL scored"><img src="assets/img/ioc-live.png" alt="IocVerdict run" loading="lazy"><figcaption>IocVerdict live run</figcaption></figure>
     <figure class="shot" data-cap="ArpSieve — benign and poisoned pcap analysis"><img src="assets/img/arp-alert.png" alt="ArpSieve run" loading="lazy"><figcaption>ArpSieve pcap run</figcaption></figure>
