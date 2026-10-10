@@ -195,7 +195,8 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--border-soft); border-radius: 4px; padding: 2px 8px; background: #0a1320;
 }
 .card-meta { font-family: var(--mono); font-size: 12px; color: var(--amber); }
-.card-link { font-family: var(--mono); font-size: 13.5px; margin-top: auto; }
+.card-links { display: flex; gap: 18px; margin-top: auto; }
+.card-link { font-family: var(--mono); font-size: 13.5px; }
 
 /* proof grid */
 .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }

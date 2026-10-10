@@ -140,10 +140,13 @@
           <h3>SOCAtelier</h3>
           <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/SOCAtelier/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
-        <p class="card-desc">The core lab. Elastic and osTicket in Docker, Suricata on the gateway, and Lynx — a triage console I built (FastAPI + React + D3) with case queue, process trees, cross-layer correlation and a hunt workbench. Four Linux cases were captured live from the lab host itself.</p>
+        <p class="card-desc">The core lab. Elastic and osTicket in Docker, Suricata on the gateway, and Lynx — a triage console I built (FastAPI + React + D3) with case queue, process trees, cross-layer correlation and a hunt workbench. Four Linux cases were captured live from the lab host itself. The Atomic Red Team stress run is benchmarked against the rules in CI: 11 of 12 executed techniques covered.</p>
         <div class="tags"><span>Elastic</span><span>Suricata</span><span>FastAPI</span><span>React</span><span>Sysmon</span><span>Docker</span></div>
-        <div class="card-meta">96 detection rules · 18 Sigma rules · 90 behavioral profiles · 14 investigations · 22 tests</div>
-        <a class="card-link" href="https://github.com/boluwajioadepojuw/SOCAtelier" target="_blank" rel="noopener">repository →</a>
+        <div class="card-meta">96 detection rules · 18 Sigma rules · 90 behavioral profiles · 14 investigations · ART benchmark: 91.7% coverage, CI-gated</div>
+        <div class="card-links">
+          <a class="card-link" href="https://github.com/boluwajioadepojuw/SOCAtelier" target="_blank" rel="noopener">repository →</a>
+          <a class="card-link" href="https://github.com/boluwajioadepojuw/SOCAtelier/blob/main/.benchmarks/benchmark-report.md" target="_blank" rel="noopener">benchmark report →</a>
+        </div>
       </div>
     </article>
 
