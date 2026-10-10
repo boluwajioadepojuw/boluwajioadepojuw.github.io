@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boluwaji Adepoju — Home SOC</title>
+<meta name="description" content="Junior SOC analyst in Milan. A home SOC built end to end: Elastic, Splunk, Suricata, Sysmon, a self-built triage console, detection-as-code and fourteen investigation reports.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="prompt">$</span> boluwaji<span class="accent">.dev</span></a>
+    <div class="nav-links">
+      <a href="#system">system</a>
+      <a href="#projects">projects</a>
+      <a href="#timeline">timeline</a>
+      <a href="#writeups">write-ups</a>
+      <a href="#gallery">gallery</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <p class="kicker">Milan, Italy · SOC / Detection Engineering · Student, UniPG</p>
+      <h1>Boluwaji Oluwaseyi<br>Adepoju</h1>
+      <p class="lede">I run a home SOC on one machine. Six repositories, one pipeline:
+      telemetry in, detections fired, cases triaged in a console I wrote myself,
+      fourteen investigations written up. The whole L1 loop, end to end.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/boluwajioadepojuw" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/Boluwaji-Oluwaseyi-Adepoju" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:boluwajioadepojupjw@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="hero-terminal">
+      <div class="term-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="term-title">ssh soc@lab — lynx status</span></div>
+      <pre class="term-body"><span class="t-dim">$ ssh soc@lab -- lynx status</span>
+pipeline .............. <span class="t-green">ONLINE</span>
+elastic .............. <span class="t-green">up (docker)</span>
+suricata ............. <span class="t-green">up (gateway)</span>
+splunk ............... <span class="t-green">up (docker)</span>
+detection rules ...... <span class="t-cyan">96</span>
+sigma rules .......... <span class="t-cyan">18</span>
+behavioral profiles .. <span class="t-cyan">90</span>
+investigations ....... <span class="t-cyan">14</span>
+open cases ........... <span class="t-cyan">10</span>
+ci ................... <span class="t-green">green x6</span>
+<span class="t-dim">$ █</span></pre>
+    </div>
+  </div>
+  <div class="stats-strip">
+    <div class="stat"><span class="stat-num">6</span><span class="stat-label">public repositories</span></div>
+    <div class="stat"><span class="stat-num">96</span><span class="stat-label">detection rules</span></div>
+    <div class="stat"><span class="stat-num">18</span><span class="stat-label">sigma rules</span></div>
+    <div class="stat"><span class="stat-num">14</span><span class="stat-label">investigation reports</span></div>
+    <div class="stat"><span class="stat-num">41</span><span class="stat-label">MITRE techniques covered</span></div>
+  </div>
+</header>
+
+<section id="system" class="section">
+  <h2 class="section-title"><span class="prompt">#</span> the system</h2>
+  <p class="section-sub">Six repositories, one SOC. Each tool feeds the next: rules define what to look for,
+  telemetry arrives from Windows and Linux, detections fire, and everything converges in the triage console.</p>
+  <div class="diagram-wrap">
+    <pre class="mermaid">
+flowchart LR
+  A[SigScope<br/>coverage gate] -->|portable detections| B[SOCAtelier<br/>SOC lab + Lynx console]
+  C[SplunkHarbor<br/>Splunk ingestion] -->|Windows telemetry| B
+  B --> D[14 investigation reports]
+  E[IocVerdict<br/>IOC enrichment] -->|verdict per indicator| D
+  F[DomainSieve<br/>NRD to Suricata] -->|gateway blocks| B
+  G[ArpSieve<br/>ARP poisoning] -->|network layer| B
+    </pre>
+  </div>
+  <div class="loop-strip">
+    <div class="loop-step"><span class="loop-n">01</span>detect<div class="loop-desc">Sigma rules and 96 Elastic queries mapped to MITRE ATT&CK</div></div>
+    <div class="loop-step"><span class="loop-n">02</span>ingest<div class="loop-desc">Sysmon, Security logs, Suricata and Splunk forwarders</div></div>
+    <div class="loop-step"><span class="loop-n">03</span>triage<div class="loop-desc">Lynx console: process trees, cross-layer correlation, hunts</div></div>
+    <div class="loop-step"><span class="loop-n">04</span>report<div class="loop-desc">Fourteen written investigations, alert to write-up</div></div>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <h2 class="section-title"><span class="prompt">#</span> projects</h2>
+  <p class="section-sub">Everything below is on GitHub, MIT-licensed, with CI running on every push.</p>
+
+  <div class="cards">
+
+    <article class="card card-featured">
+      <a class="card-img" href="https://github.com/boluwajioadepojuw/SOCAtelier" target="_blank" rel="noopener"><img src="assets/img/socat-01-case-queue.png" alt="Lynx case queue" loading="lazy"></a>
+      <div class="card-body">
+        <div class="card-head">
+          <h3>SOCAtelier</h3>
+          <img class="badge" src="https://github.com/boluwajioadepojuw/SOCAtelier/actions/workflows/ci.yml/badge.svg" alt="CI">
+        </div>
+        <p class="card-desc">The core lab. Elastic, osTicket and a self-built triage console (FastAPI + React + D3) in Docker; Suricata on the gateway. Atomic Red Team runs validated the rules; four Linux cases were captured live from the lab host itself.</p>
+        <div class="tags"><span>Elastic</span><span>Suricata</span><span>FastAPI</span><span>React</span><span>Sysmon</span><span>Docker</span></div>
+        <div class="card-meta">96 detection rules · 18 Sigma rules · 90 behavioral profiles · 14 investigations · 22 tests</div>
+        <a class="card-link" href="https://github.com/boluwajioadepojuw/SOCAtelier" target="_blank" rel="noopener">repository →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="card-img" href="https://github.com/boluwajioadepojuw/SplunkHarbor" target="_blank" rel="noopener"><img src="assets/img/splunk-01-dashboard.png" alt="SplunkHarbor security dashboard" loading="lazy"></a>
+      <div class="card-body">
+        <div class="card-head">
+          <h3>SplunkHarbor</h3>
+          <img class="badge" src="https://github.com/boluwajioadepojuw/SplunkHarbor/actions/workflows/ci.yml/badge.svg" alt="CI">
+        </div>
+        <p class="card-desc">Splunk in Docker with a PowerShell script that installs the Universal Forwarder on a Windows endpoint. Five SPL detections — brute force, encoded PowerShell, scheduled tasks, lateral movement, persistence — plus an alert-to-write-up walkthrough.</p>
+        <div class="tags"><span>Splunk</span><span>SPL</span><span>Sysmon</span><span>PowerShell</span><span>Docker</span></div>
+        <div class="card-meta">5 SPL detections · triage walkthrough · live dashboards</div>
+        <a class="card-link" href="https://github.com/boluwajioadepojuw/SplunkHarbor" target="_blank" rel="noopener">repository →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="card-img" href="https://github.com/boluwajioadepojuw/SigScope" target="_blank" rel="noopener"><img src="assets/img/sig-04-report.png" alt="SigScope coverage report" loading="lazy"></a>
+      <div class="card-body">
+        <div class="card-head">
+          <h3>SigScope</h3>
+          <img class="badge" src="https://github.com/boluwajioadepojuw/SigScope/actions/workflows/ci.yml/badge.svg" alt="CI">
+        </div>
+        <p class="card-desc">Detection as code. A Python CLI that maps Sigma rules onto MITRE ATT&CK and renders HTML, CSV, a coverage badge and a gap workbook — every uncovered technique listed with its tactic and a next action. CI fails the build when coverage drops.</p>
+        <div class="tags"><span>Python</span><span>Sigma</span><span>ATT&CK</span><span>CI gate</span></div>
+        <div class="card-meta">24 tests · coverage gate in CI · ATT&CK Navigator export</div>
+        <a class="card-link" href="https://github.com/boluwajioadepojuw/SigScope" target="_blank" rel="noopener">repository →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="card-img" href="https://github.com/boluwajioadepojuw/IocVerdict" target="_blank" rel="noopener"><img src="assets/img/ioc-01-live-run.png" alt="IocVerdict live run" loading="lazy"></a>
+      <div class="card-body">
+        <div class="card-head">
+          <h3>IocVerdict</h3>
+          <img class="badge" src="https://github.com/boluwajioadepojuw/IocVerdict/actions/workflows/ci.yml/badge.svg" alt="CI">
+        </div>
+        <p class="card-desc">Threat-intel console: feed it an IP, domain, URL or hash and it asks six free sources, scores the indicator 0-100 and maps it to MITRE. The verdict lands in the investigation reports.</p>
+        <div class="tags"><span>Python</span><span>Threat intel</span><span>IOC</span></div>
+        <div class="card-meta">6 free sources · 0-100 scoring · MITRE mapping</div>
+        <a class="card-link" href="https://github.com/boluwajioadepojuw/IocVerdict" target="_blank" rel="noopener">repository →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="card-img" href="https://github.com/boluwajioadepojuw/DomainSieve" target="_blank" rel="noopener"><img src="assets/img/ds-01-rulebuild.png" alt="DomainSieve rule build" loading="lazy"></a>
+      <div class="card-body">
+        <div class="card-head">
+          <h3>DomainSieve</h3>
+          <img class="badge" src="https://github.com/boluwajioadepojuw/DomainSieve/actions/workflows/ci.yml/badge.svg" alt="CI">
+        </div>
+        <p class="card-desc">Phishing-domain sieve. Downloads the Newly Registered Domains feed, scores for brand impersonation and turns suspicious domains into Suricata rules that block them at the gateway.</p>
+        <div class="tags"><span>Python</span><span>Suricata</span><span>NRD feed</span></div>
+        <div class="card-meta">daily NRD feed · Suricata rule generation</div>
+        <a class="card-link" href="https://github.com/boluwajioadepojuw/DomainSieve" target="_blank" rel="noopener">repository →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="card-img" href="https://github.com/boluwajioadepojuw/ArpSieve" target="_blank" rel="noopener"><img src="assets/img/arp-01-alert.png" alt="ArpSieve alert" loading="lazy"></a>
+      <div class="card-body">
+        <div class="card-head">
+          <h3>ArpSieve</h3>
+          <img class="badge" src="https://github.com/boluwajioadepojuw/ArpSieve/actions/workflows/ci.yml/badge.svg" alt="CI">
+        </div>
+        <p class="card-desc">Network layer of the lab. Watches ARP traffic live and in pcaps, detects poisoning, and alerts — with sample captures committed as test fixtures.</p>
+        <div class="tags"><span>Python</span><span>ARP</span><span>pcap</span></div>
+        <div class="card-meta">live and pcap detection · sample captures as fixtures</div>
+        <a class="card-link" href="https://github.com/boluwajioadepojuw/ArpSieve" target="_blank" rel="noopener">repository →</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="timeline" class="section">
+  <h2 class="section-title"><span class="prompt">#</span> timeline</h2>
+  <p class="section-sub">Two years of building, one account. Every commit keeps its original date.</p>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-date">Nov 2024</div><div class="tl-body"><h4>SOCAtelier begins</h4><p>First commit of the lab that became the system. Elastic and detection rules take shape.</p></div></div>
+    <div class="tl-item"><div class="tl-date">2025</div><div class="tl-body"><h4>Study and groundwork</h4><p>Linux, networking and Elastic fundamentals; the lab kept running. No public commits until the account went live.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Mar 2026</div><div class="tl-body"><h4>SplunkHarbor</h4><p>Second SIEM. Universal Forwarder deployment script, five SPL detections, triage walkthrough.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Apr 2026</div><div class="tl-body"><h4>SigScope</h4><p>Sigma rules get a coverage gate: CI fails when ATT&CK coverage drops.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-body"><h4>Atomic Red Team stress run</h4><p>330 atomics, 708 behaviors executed against the lab; datasets and findings documented.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Sep 2026</div><div class="tl-body"><h4>Lynx console + live Linux captures</h4><p>The FastAPI + React triage console goes live; four investigations captured from the real lab host, real processes, real timestamps.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Oct 2026</div><div class="tl-body"><h4>Published</h4><p>The account goes public: six repositories, CI on every push, this site. The oldest commit is from 10 November 2024.</p></div></div>
+  </div>
+  <p class="note">This GitHub account was created in October 2026. Nothing is backdated: every commit above carries its original timestamp, and SOCAtelier's history is verifiable back to November 2024.</p>
+</section>
+
+<section id="writeups" class="section">
+  <h2 class="section-title"><span class="prompt">#</span> write-ups</h2>
+  <p class="section-sub">Fourteen investigations live in the SOCAtelier repo. Each follows one alert from detection to a written report.</p>
+  <div class="writeups">
+    <a class="wu" href="https://github.com/boluwajioadepojuw/SOCAtelier/tree/main/investigation-reports" target="_blank" rel="noopener">
+      <span class="wu-num">14</span><span class="wu-txt">investigation reports — IR-001..007 and LIR-001..007</span><span class="wu-arrow">→</span>
+    </a>
+    <a class="wu" href="https://github.com/boluwajioadepojuw/SplunkHarbor/blob/main/spl/triage-walkthrough.md" target="_blank" rel="noopener">
+      <span class="wu-num">L1</span><span class="wu-txt">Splunk triage walkthrough — alert to write-up, step by step</span><span class="wu-arrow">→</span>
+    </a>
+    <a class="wu" href="https://github.com/boluwajioadepojuw/SigScope/blob/main/sample/gap-workbook.csv" target="_blank" rel="noopener">
+      <span class="wu-num">SOC</span><span class="wu-txt">Gap workbook — uncovered techniques with tactic and next action</span><span class="wu-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<section id="gallery" class="section">
+  <h2 class="section-title"><span class="prompt">#</span> gallery</h2>
+  <p class="section-sub">Real screenshots from the lab. Click to enlarge.</p>
+  <div class="gallery">
+    <figure class="shot" data-cap="SOCAtelier — Lynx case queue: ten open cases"><img src="assets/img/socat-01-case-queue.png" alt="Lynx case queue" loading="lazy"><figcaption>Lynx case queue</figcaption></figure>
+    <figure class="shot" data-cap="SOCAtelier — process tree for a selected case"><img src="assets/img/socat-02-process-tree.png" alt="Process tree" loading="lazy"><figcaption>Process tree</figcaption></figure>
+    <figure class="shot" data-cap="SOCAtelier — cross-layer correlation view"><img src="assets/img/socat-03-cross-layer.png" alt="Cross-layer view" loading="lazy"><figcaption>Cross-layer correlation</figcaption></figure>
+    <figure class="shot" data-cap="SOCAtelier — live Linux case, real telemetry from the lab host"><img src="assets/img/socat-04-live-linux.png" alt="Live Linux case" loading="lazy"><figcaption>Live Linux case</figcaption></figure>
+    <figure class="shot" data-cap="SOCAtelier — hunt workbench"><img src="assets/img/socat-05-hunt-workbench.png" alt="Hunt workbench" loading="lazy"><figcaption>Hunt workbench</figcaption></figure>
+    <figure class="shot" data-cap="SOCAtelier — ATT&CK coverage map"><img src="assets/img/socat-06-coverage-map.png" alt="Coverage map" loading="lazy"><figcaption>Coverage map</figcaption></figure>
+    <figure class="shot" data-cap="SOCAtelier — analyst action log"><img src="assets/img/socat-07-action-log.png" alt="Action log" loading="lazy"><figcaption>Action log</figcaption></figure>
+    <figure class="shot" data-cap="SplunkHarbor — security dashboard with four detection panels"><img src="assets/img/splunk-01-dashboard.png" alt="Splunk dashboard" loading="lazy"><figcaption>Splunk security dashboard</figcaption></figure>
+    <figure class="shot" data-cap="SplunkHarbor — access and lateral movement dashboard"><img src="assets/img/splunk-02-access.png" alt="Access dashboard" loading="lazy"><figcaption>Access dashboard</figcaption></figure>
+    <figure class="shot" data-cap="SplunkHarbor — endpoint threat dashboard"><img src="assets/img/splunk-03-endpoint.png" alt="Endpoint dashboard" loading="lazy"><figcaption>Endpoint dashboard</figcaption></figure>
+    <figure class="shot" data-cap="SplunkHarbor — saved SPL detection searches"><img src="assets/img/splunk-04-searches.png" alt="SPL searches" loading="lazy"><figcaption>Saved searches</figcaption></figure>
+    <figure class="shot" data-cap="SigScope — CLI run"><img src="assets/img/sig-01-cli.png" alt="SigScope CLI" loading="lazy"><figcaption>CLI run</figcaption></figure>
+    <figure class="shot" data-cap="SigScope — gap workbook: uncovered techniques with next actions"><img src="assets/img/sig-02-gap-workbook.png" alt="Gap workbook" loading="lazy"><figcaption>Gap workbook</figcaption></figure>
+    <figure class="shot" data-cap="SigScope — coverage heatmap"><img src="assets/img/sig-03-heatmap.png" alt="Heatmap" loading="lazy"><figcaption>Coverage heatmap</figcaption></figure>
+    <figure class="shot" data-cap="SigScope — HTML coverage report"><img src="assets/img/sig-04-report.png" alt="Report" loading="lazy"><figcaption>Coverage report</figcaption></figure>
+    <figure class="shot" data-cap="SigScope — rule-to-technique mapping rows"><img src="assets/img/sig-05-rows.png" alt="Mapping rows" loading="lazy"><figcaption>Mapping rows</figcaption></figure>
+    <figure class="shot" data-cap="IocVerdict — live run with verdicts and MITRE mapping"><img src="assets/img/ioc-01-live-run.png" alt="IocVerdict" loading="lazy"><figcaption>IocVerdict live run</figcaption></figure>
+    <figure class="shot" data-cap="DomainSieve — NRD feed to Suricata rule build"><img src="assets/img/ds-01-rulebuild.png" alt="DomainSieve" loading="lazy"><figcaption>DomainSieve rule build</figcaption></figure>
+    <figure class="shot" data-cap="ArpSieve — alert on suspicious ARP traffic"><img src="assets/img/arp-01-alert.png" alt="ArpSieve" loading="lazy"><figcaption>ArpSieve alert</figcaption></figure>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <h2 class="section-title"><span class="prompt">#</span> contact</h2>
+  <div class="contact-row">
+    <a class="contact-card" href="mailto:boluwajioadepojupjw@gmail.com"><span class="c-label">email</span><span class="c-value">boluwajioadepojupjw@gmail.com</span></a>
+    <a class="contact-card" href="https://github.com/boluwajioadepojuw" target="_blank" rel="noopener"><span class="c-label">github</span><span class="c-value">boluwajioadepojuw</span></a>
+    <a class="contact-card" href="https://www.linkedin.com/in/Boluwaji-Oluwaseyi-Adepoju" target="_blank" rel="noopener"><span class="c-label">linkedin</span><span class="c-value">Boluwaji-Oluwaseyi-Adepoju</span></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Built by hand — HTML, CSS, one script. No trackers, no analytics, no frameworks.</p>
+  <p>Milan, Italy · <span class="t-green">$</span> exit 0</p>
+</footer>
+
+<div id="lightbox" class="lightbox" hidden>
+  <button class="lb-close" aria-label="Close">×</button>
+  <img class="lb-img" src="" alt="">
+  <p class="lb-cap"></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: {
+  background: '#0a1017', primaryColor: '#0d1b2a', primaryTextColor: '#d7e0ea',
+  primaryBorderColor: '#1e3a52', lineColor: '#3b5876', fontFamily: 'ui-monospace, Menlo, monospace',
+  fontSize: '13px' } });
+
+const shots = document.querySelectorAll('.shot');
+const lb = document.getElementById('lightbox');
+const lbImg = lb.querySelector('.lb-img');
+const lbCap = lb.querySelector('.lb-cap');
+shots.forEach(s => s.addEventListener('click', () => {
+  const img = s.querySelector('img');
+  lbImg.src = img.src.replace('assets/img/', 'assets/img/');
+  lbImg.alt = img.alt;
+  lbCap.textContent = s.dataset.cap;
+  lb.hidden = false;
+}));
+lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-close')) lb.hidden = true; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.hidden = true; });
+</script>
+
+</body>
+</html>
