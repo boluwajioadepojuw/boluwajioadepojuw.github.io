@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boluwaji Adepoju — Home SOC</title>
-<meta name="description" content="Junior SOC analyst in Milan. A home SOC built end to end: Elastic, Splunk, Suricata, Sysmon, a self-built triage console, detection-as-code and fourteen investigation reports.">
+<meta name="description" content="I built a home SOC on one machine. Elastic, Splunk, Suricata, Sysmon, a triage console I wrote myself, and fourteen investigation reports.">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -39,9 +39,10 @@
     <div class="hero-text">
       <p class="kicker">Milan, Italy · SOC / Detection Engineering · Student, UniPG</p>
       <h1>Boluwaji<br>Adepoju</h1>
-      <p class="lede">A home SOC on one machine, run end to end: telemetry in, detections fired,
-      cases triaged in a console I wrote myself, fourteen investigations written up.
-      Everything below is real — every screenshot on this page came out of a live run.</p>
+      <p class="lede">I built a home SOC on one machine, and I run the whole L1 loop myself:
+      telemetry comes in, detections fire, I triage the cases in a console I wrote,
+      and everything ends as a written report. Every screenshot on this page is
+      from a real run. Nothing here is staged.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="https://github.com/boluwajioadepojuw" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="mailto:boluwajioadepojupjw@gmail.com">Email</a>
@@ -59,7 +60,7 @@
         <div class="browser-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="browser-url">lynx console — live from the lab</span></div>
         <div class="browser-body"><img src="assets/img/soc-console-queue.png" alt="Lynx console case queue, live"></div>
       </div>
-      <p class="hero-caption">The triage console, photographed during a live run — ten open cases in the queue.</p>
+      <p class="hero-caption">The console I triage in. Ten cases were in the queue when I took this.</p>
     </div>
   </div>
 </header>
@@ -67,8 +68,9 @@
 <section id="system" class="section">
   <p class="section-eyebrow">01 — architecture</p>
   <h2 class="section-title"><span class="prompt">#</span> the system</h2>
-  <p class="section-sub">Six repositories, one SOC. Rules define what to look for, telemetry arrives from
-  Windows and Linux, detections fire, and everything converges in the triage console.</p>
+  <p class="section-sub">Six repos, one SOC. Rules say what to look for, telemetry arrives from
+  Windows and Linux, detections fire, and I work everything in the triage console.
+  It started as one repo in November 2024 and grew into this.</p>
   <div class="diagram-wrap">
     <svg viewBox="0 0 940 470" role="img" aria-label="Diagram of the six repositories feeding the SOCAtelier lab and the investigation reports" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -122,8 +124,8 @@
 <section id="projects" class="section">
   <p class="section-eyebrow">02 — projects</p>
   <h2 class="section-title"><span class="prompt">#</span> projects</h2>
-  <p class="section-sub">Everything below is on GitHub, MIT-licensed, CI runs on every push, and each screenshot
-  was taken during a live run of the tool.</p>
+  <p class="section-sub">All six are public on GitHub, MIT-licensed, and CI runs on every push.
+  The screenshots on the cards came out of live runs of the actual tools.</p>
 
   <div class="cards">
 
@@ -140,7 +142,7 @@
           <h3>SOCAtelier</h3>
           <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/SOCAtelier/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
-        <p class="card-desc">The core lab. Elastic and osTicket in Docker, Suricata on the gateway, and Lynx — a triage console I built (FastAPI + React + D3) with case queue, process trees, cross-layer correlation and a hunt workbench. Four Linux cases were captured live from the lab host itself. The Atomic Red Team stress run is benchmarked against the rules in CI: 12 of 12 executed techniques covered.</p>
+        <p class="card-desc">The big one, and the first repo I made. Elastic and osTicket run in Docker, Suricata sits on the gateway, and Lynx is the console I built myself (FastAPI and React, D3 process trees) so I could triage cases the way a real SOC does. Four of the Linux investigations were captured live from the lab host, real processes and all. The Atomic Red Team run is benchmarked against the rules in CI: 12 of 12 executed techniques covered.</p>
         <div class="tags"><span>Elastic</span><span>Suricata</span><span>FastAPI</span><span>React</span><span>Sysmon</span><span>Docker</span></div>
         <div class="card-meta">97 detection rules · 29 Sigma rules · 90 behavioral profiles · 14 investigations · ART benchmark: 100% coverage, CI-gated</div>
         <div class="card-links">
@@ -157,7 +159,7 @@
           <h3>SplunkHarbor</h3>
           <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/SplunkHarbor/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
-        <p class="card-desc">Splunk in Docker with a PowerShell script that installs the Universal Forwarder on a Windows endpoint. Five SPL detections — brute force, encoded PowerShell, scheduled tasks, lateral movement, persistence — shipped as saved searches with dashboards and an alert-to-write-up walkthrough.</p>
+        <p class="card-desc">Second SIEM, same lab. Splunk runs in Docker, and a PowerShell script I wrote installs the Universal Forwarder on the Windows endpoint. Five SPL detections (brute force, encoded PowerShell, scheduled tasks, lateral movement, persistence) ship as saved searches with three dashboards, plus a walkthrough that goes from alert to write-up. The demo dataset in the repo is real Mordor captures, so the whole thing replays from one command.</p>
         <div class="tags"><span>Splunk</span><span>SPL</span><span>Sysmon</span><span>PowerShell</span><span>Docker</span></div>
         <div class="card-meta">5 SPL detections · 3 live dashboards · triage walkthrough</div>
         <a class="card-link" href="https://github.com/boluwajioadepojuw/SplunkHarbor" target="_blank" rel="noopener">repository →</a>
@@ -171,9 +173,9 @@
           <h3>SigScope</h3>
           <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/SigScope/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
-        <p class="card-desc">Detection as code. A Python CLI that maps Sigma rules onto MITRE ATT&CK and renders HTML, CSV, a coverage badge and a gap workbook — each uncovered technique listed with its tactic and a next action. CI fails the build when coverage drops.</p>
+        <p class="card-desc">Detection as code. A small Python CLI that maps my Sigma rules onto MITRE ATT&CK and renders HTML, CSV, a coverage badge and a gap workbook. Each uncovered technique is listed with its tactic and a next action, so the workbook doubles as a SOC to-do list. CI fails the build when coverage drops.</p>
         <div class="tags"><span>Python</span><span>Sigma</span><span>ATT&CK</span><span>CI gate</span></div>
-        <div class="card-meta">24 tests · coverage gate in CI · Navigator export</div>
+        <div class="card-meta">24 tests · 39/54 techniques covered · CI coverage gate</div>
         <a class="card-link" href="https://github.com/boluwajioadepojuw/SigScope" target="_blank" rel="noopener">repository →</a>
       </div>
     </article>
@@ -185,7 +187,7 @@
           <h3>IocVerdict</h3>
           <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/IocVerdict/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
-        <p class="card-desc">Threat-intel console: feed it an IP, domain, URL or hash and it asks seven free sources, folds the answers into one 0-100 score and maps it onto MITRE. The run in the screenshot scored a live Emotet/QakBot C2 IP and a URLhaus-listed URL.</p>
+        <p class="card-desc">Threat-intel console. Feed it an IP, domain, URL or hash and it asks seven free sources, folds the answers into one 0-100 score and maps it onto MITRE. The screenshot is a live run: a real Emotet/QakBot C2 IP and a URLhaus-listed URL getting scored.</p>
         <div class="tags"><span>Python</span><span>Threat intel</span><span>IOC</span></div>
         <div class="card-meta">7 free sources · 0-100 scoring · MITRE mapping</div>
         <a class="card-link" href="https://github.com/boluwajioadepojuw/IocVerdict" target="_blank" rel="noopener">repository →</a>
@@ -199,7 +201,7 @@
           <h3>DomainSieve</h3>
           <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/DomainSieve/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
-        <p class="card-desc">Phishing-domain sieve. Downloads the Newly Registered Domains feed, keeps the domains that impersonate watched brands, and turns them into Suricata rules for the gateway. The captured run pulled today's feed and wrote 24 rules from 8 suspicious domains.</p>
+        <p class="card-desc">Phishing-domain sieve. Every day it downloads the Newly Registered Domains feed, keeps the domains that impersonate brands I watch, and turns them into Suricata rules for the gateway. The captured run pulled today's feed: 8 suspicious domains, 24 rules.</p>
         <div class="tags"><span>Python</span><span>Suricata</span><span>NRD feed</span></div>
         <div class="card-meta">daily NRD feed · live run: 8 hits, 24 rules</div>
         <a class="card-link" href="https://github.com/boluwajioadepojuw/DomainSieve" target="_blank" rel="noopener">repository →</a>
@@ -213,7 +215,7 @@
           <h3>ArpSieve</h3>
           <span class="badge-wrap"><img class="badge" src="https://github.com/boluwajioadepojuw/ArpSieve/actions/workflows/ci.yml/badge.svg" alt="CI" onerror="this.parentElement.classList.add('no-badge')"></span>
         </div>
-        <p class="card-desc">Network layer of the lab. Watches ARP traffic live and in pcaps, detects poisoning, and alerts — the captured run shows a benign capture passing clean and a poisoned capture raising the spoofing alert.</p>
+        <p class="card-desc">Network layer of the lab. Watches ARP traffic live and in pcaps, and alerts when two MACs claim the same IP. The screenshot shows a benign capture passing clean and a poisoned one raising the alert.</p>
         <div class="tags"><span>Python</span><span>ARP</span><span>pcap</span></div>
         <div class="card-meta">live and pcap detection · sample captures as fixtures</div>
         <a class="card-link" href="https://github.com/boluwajioadepojuw/ArpSieve" target="_blank" rel="noopener">repository →</a>
@@ -226,8 +228,8 @@
 <section id="proof" class="section">
   <p class="section-eyebrow">03 — proof of work</p>
   <h2 class="section-title"><span class="prompt">#</span> live runs</h2>
-  <p class="section-sub">Not screenshots of screenshots. These terminal captures and browser shots came out of
-  actual runs of the tools, with real feeds and real data.</p>
+  <p class="section-sub">No staged screenshots. These captures are from actual runs of the tools,
+  with real feeds and real data.</p>
   <div class="proof-grid">
     <figure class="shot" data-cap="SigScope CLI — 39/54 ATT&CK techniques covered, gate passes"><img src="assets/img/sig-cli.png" alt="SigScope CLI run" loading="lazy"><figcaption>SigScope — coverage gate run</figcaption></figure>
     <figure class="shot" data-cap="IocVerdict — live Emotet/QakBot C2 IP scored 25/100, URLhaus URL scored 20/100"><img src="assets/img/ioc-live.png" alt="IocVerdict live run" loading="lazy"><figcaption>IocVerdict — real C2 verdicts</figcaption></figure>
@@ -243,21 +245,22 @@
   <h2 class="section-title"><span class="prompt">#</span> timeline</h2>
   <p class="section-sub">Two years of building, one account. Every commit keeps its original date.</p>
   <div class="timeline">
-    <div class="tl-item"><div class="tl-date">Nov 2024</div><div class="tl-body"><h4>SOCAtelier begins</h4><p>First commit of the lab that became the system. Elastic and detection rules take shape.</p></div></div>
-    <div class="tl-item"><div class="tl-date">2025</div><div class="tl-body"><h4>Study and groundwork</h4><p>Linux, networking and Elastic fundamentals; the lab kept running. No public commits until the account went live.</p></div></div>
-    <div class="tl-item"><div class="tl-date">Mar 2026</div><div class="tl-body"><h4>SplunkHarbor</h4><p>Second SIEM. Universal Forwarder deployment script, five SPL detections, triage walkthrough.</p></div></div>
-    <div class="tl-item"><div class="tl-date">Apr 2026</div><div class="tl-body"><h4>SigScope</h4><p>Sigma rules get a coverage gate: CI fails when ATT&CK coverage drops.</p></div></div>
-    <div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-body"><h4>Atomic Red Team stress run</h4><p>330 atomics, 708 behaviors executed against the lab; datasets and findings documented.</p></div></div>
-    <div class="tl-item"><div class="tl-date">Sep 2026</div><div class="tl-body"><h4>Lynx console + live Linux captures</h4><p>The triage console goes live; four investigations captured from the real lab host, real processes, real timestamps.</p></div></div>
-    <div class="tl-item"><div class="tl-date">Oct 2026</div><div class="tl-body"><h4>Published</h4><p>The account goes public: six repositories, CI on every push, this site. The oldest commit is from 10 November 2024.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Nov 2024</div><div class="tl-body"><h4>SOCAtelier starts</h4><p>First commit. Just Elastic and a handful of rules at the beginning.</p></div></div>
+    <div class="tl-item"><div class="tl-date">2025</div><div class="tl-body"><h4>Study and groundwork</h4><p>Linux, networking, Elastic. The lab kept running, but nothing was public until the account went live.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Mar 2026</div><div class="tl-body"><h4>SplunkHarbor</h4><p>Second SIEM. Forwarder script, five SPL detections, triage walkthrough.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Apr 2026</div><div class="tl-body"><h4>SigScope</h4><p>Sigma rules got a coverage gate, so CI fails when coverage drops.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Jun 2026</div><div class="tl-body"><h4>Atomic Red Team stress run</h4><p>330 atomics, 708 behaviors against the lab. Datasets documented in the repo.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Sep 2026</div><div class="tl-body"><h4>Lynx console + live Linux captures</h4><p>The console went live. Four investigations captured from the real lab host, real processes, real timestamps.</p></div></div>
+    <div class="tl-item"><div class="tl-date">Oct 2026</div><div class="tl-body"><h4>Published</h4><p>The account went public: six repos, CI on every push, this site. Oldest commit: 10 November 2024.</p></div></div>
   </div>
-  <p class="note">This GitHub account was created in October 2026. Nothing is backdated: every commit above carries its original timestamp, and SOCAtelier's history is verifiable back to November 2024.</p>
+  <p class="note">This GitHub account was created in October 2026. Nothing is backdated: every commit carries its original timestamp, and SOCAtelier's history goes back to November 2024.</p>
 </section>
 
 <section id="writeups" class="section">
   <p class="section-eyebrow">05 — writing</p>
   <h2 class="section-title"><span class="prompt">#</span> write-ups</h2>
-  <p class="section-sub">Fourteen investigations live in the SOCAtelier repo. Each follows one alert from detection to a written report.</p>
+  <p class="section-sub">Fourteen investigations live in the SOCAtelier repo. Each one follows a single
+  alert from detection to a written report.</p>
   <div class="writeups">
     <a class="wu" href="https://github.com/boluwajioadepojuw/SOCAtelier/tree/main/investigation-reports" target="_blank" rel="noopener">
       <span class="wu-num">14</span><span class="wu-txt">investigation reports — IR-001..007 and LIR-001..007</span><span class="wu-arrow">→</span>
@@ -274,7 +277,7 @@
 <section id="gallery" class="section">
   <p class="section-eyebrow">06 — gallery</p>
   <h2 class="section-title"><span class="prompt">#</span> gallery</h2>
-  <p class="section-sub">Every image below was taken during a live run on 11/10/2026. Click to enlarge.</p>
+  <p class="section-sub">Every image here was taken during a live run on 11/10/2026. Click to enlarge.</p>
   <div class="gallery">
     <figure class="shot" data-cap="SOCAtelier — Lynx case queue: ten open cases"><img src="assets/img/soc-console-queue.png" alt="Lynx case queue" loading="lazy"><figcaption>Lynx case queue</figcaption></figure>
     <figure class="shot" data-cap="SOCAtelier — investigation view with process tree"><img src="assets/img/soc-console-case.png" alt="Case investigation" loading="lazy"><figcaption>Case investigation</figcaption></figure>
